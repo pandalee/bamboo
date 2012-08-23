@@ -1,0 +1,82 @@
+@charset "utf-8"
+@import core
+/**********CSS ReSet**********/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td,
+menu,dialog
+	setMP(m p,0)
+
+article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section,dialog
+	block()
+
+table
+	border-collapse collapse
+	border-spacing 0
+
+fieldset,img,abbr,acronym
+	border(0)
+
+address,caption,cite,code,dfn,th,var
+	font-style normal
+	fw(4)
+
+ol,ul,menu
+	list-style none
+
+h1,h2,h3,h4,h5,h6
+	fs(14px)
+
+q
+	&:before
+	&:after
+		content ''
+
+form
+	inline()
+
+html
+	overflow-y scroll
+
+input,pre,button,select,textarea
+	bColor(white)
+	ff(yh)
+	outline 0 none
+	resize none
+
+input[type="checkbox"]
+	alignMiddle()
+
+a
+	outline 0 none
+	text-decoration none
+
+	html.lt-ie7 &:link
+	html.lt-ie7 &:visited
+		opacity(1)
+		
+	html.lt-ie7 &:hover
+	html.lt-ie7 &:active
+		opacity(0.99)
+
+img
+	inlineBlock()
+	alignTop()
+
+video
+	alignTop()
+
+hr
+	margin(10px)
+	pad(0)
+	fs(0)
+	height(1px)
+	border(1px)
+	border-width 1px 0 0
+
+::-moz-selection
+	bColor(rgba(0,0,0,1))
+	mC()
+
+::selection
+	bColor(rgba(0,0,0,1))
+	mC()
+

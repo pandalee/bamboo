@@ -1,0 +1,28 @@
+/****** Header ******/
+header
+	bColor(#9)
+	alignCenter(m)
+	pad(20px 0 10px)
+
+	.mainBody
+		relative()
+		alignCenter(m)
+		@extend .offset
+		clearfix()
+
+		.title
+			alignLeft(f)
+			letterSpacing(0.3em)
+			fs(30px)
+			fw(4)
+
+			a
+
+				&:link
+				&:visited
+					hexCCC()
+					
+				&:hover
+				&:active
+					hexDDD()
+

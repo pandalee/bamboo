@@ -1,0 +1,388 @@
+//**********颜色**********
+masterColor = #0BB
+slaveColor = #963
+defaultBorderColor = #CE
+
+//**********定位**********
+pz(types = s, x = auto, y =auto)
+	if types is ab
+		position absolute
+		top y
+		left x
+	if types is r
+		position relative
+	if types is s
+		position static
+	if types is f
+		position fixed
+
+absolute(x = auto, y = auto)
+	pz('ab',x,y)
+
+relative()
+	pz(r)
+
+static()
+	pz()
+
+fixed()
+	pz(f)
+
+//**********盒模型**********
+dis(types = b) //盒模型
+	if types is n
+		display none
+	if types is b
+		display block
+	if types is ib
+		display inline-block
+	if types is i
+		display inline
+
+block()
+	dis(b)
+
+inline()
+	dis(i)
+
+inlineBlock()
+	dis(ib)
+
+setMP(types,n) //内外边距
+	if m in types
+		margin n
+	if p in types
+		padding n
+
+margin(n, side = all)
+	if side is all
+		setMP(m,n)
+	if side is t
+		margin-top n
+	if side is r
+		margin-right n
+	if side is b
+		margin-bottom n
+	if side is l
+		margin-left n
+
+pad(n, side = all)
+	if side is all
+		setMP(p,n)	
+	if side is t
+		padding-top n
+	if side is r
+		padding-right n
+	if side is b
+		padding-bottom n
+	if side is l
+		padding-left n
+
+border(n, types = solid, color = defaultBorderColor, side = all) //边框
+	if n is 0  //无边框
+		if side is all
+			border 0 none
+		if side is t
+			border-top 0 none
+		if side is r
+			border-right 0 none
+		if side is b
+			border-bottom 0 none
+		if side is l
+			border-left 0 none
+	if n isnt 0
+		if side is all
+			border n types color
+		if side is t
+			border-top n types color
+		if side is r
+			border-right n types color
+		if side is b
+			border-bottom n types color
+		if side is l
+			border-left n types color
+
+radius(n = 5px) //圆角 默认5px
+	-moz-border-radius n
+	-webkit-border-radius n
+	border-radius n
+
+width()
+	width arguments
+
+height()
+	height arguments
+
+minWidth() //最小宽
+	width auto
+	min-width arguments
+	html.lt-ie7 &
+		width arguments
+
+minHeight() //最小高
+	height auto
+	min-height arguments
+	html.lt-ie7 &
+		height arguments
+
+maxWidth() //最大宽
+	width auto
+	max-width arguments
+
+maxHeight() //最大高
+	height auto
+	max-height arguments
+
+bColor(types = mC)
+	//background-color
+	if types is tran
+		//transparent
+		background-color transparent
+	else if types is mC
+		//masterColor
+		background-color masterColor
+	else if types is sC
+		//slaveColor
+		background-color slaveColor
+	else if types is a 'unit'
+		//灰阶
+		background-color #111 * types
+	else
+		background-color types
+
+bImg(imgURL, repeatType = no, x = 0, y = 0, color = transparent) //background-image
+	if imgURL is none
+		background none
+	else if repeatType is no
+		background url(../images/imgURL) no-repeat x y color
+	else if repeatType is xy
+		background url(../images/imgURL) repeat x y color
+	else if repeatType is x
+		background url(../images/imgURL) repeat-x x y color
+	else if repeatType is y
+		background url(../images/imgURL) repeat-y x y color
+
+gradient(color1, color2)
+	// 颜色格式要用完整的十六进制表示
+	background -moz-linear-gradient(top, color1, color2)
+	background -webkit-gradient(linear, left top, left bottom, from(color1), to(color2))
+	background -o-linear-gradient(top, color1, color2)
+	filter unquote('progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=' + color1 + ', endColorstr=' + color2 + ')')
+
+partGradient(color1, color2, color3, percent1 = 0, percent2 = 100%, percent3 = 100%)
+	background -moz-linear-gradient(top, color1 percent1, color2 percent2, color3 percent3)
+	background -webkit-gradient(linear, left top, left bottom, color-stop(percent1, color1), color-stop(percent2, color2), color-stop(percent3, color3))
+	background -o-linear-gradient(top, color1 percent1, color2 percent2)
+
+//**********文本**********
+ff(types = yh) //font-family
+	if types is yh //微软雅黑
+		font-family unquote('\5FAE\8F6F\96C5\9ED1,Verdana,\5B8B\4F53,sans-serif')
+	if types is st //宋体
+		font-family unquote('Verdana,\5B8B\4F53,sans-serif')
+
+fs(n) //font-size
+	font-size n
+
+fw(n) //font-weight
+	font-weight n * 100
+
+lh(n) //line-height
+	line-height n
+
+textAlign(n) //文本水平对齐
+	if n is l //文本左对齐
+		text-align left
+	if n is c //文本中对齐
+		text-align center
+	if n is r //文本右对齐
+		text-align right
+
+verticalAlign() //垂直对齐
+	vertical-align arguments
+
+alignTop(n = normal)
+	if n is t
+		verticalAlign(text-top)
+	if n is normal
+		verticalAlign(top)
+
+alignMiddle()
+	verticalAlign(middle)
+
+alignBottom(n = normal)
+	if n is t
+		verticalAlign(text-bottom)
+	if n is normal
+		verticalAlign(bottom)
+
+baseline()
+	verticalAlign(baseline)
+
+textTransform() //文本大小写
+	text-transform arguments
+
+shouzimu() //首字母大写
+	textTransform(capitalize)
+
+xiaoxie() //全体小写
+	textTransform(lowercase)
+
+daxie() //全体大写
+	textTransform(uppercase)
+
+indent(n = -9999px)
+	text-indent n
+
+breakEnWord()
+	white-space pre-wrap
+	word-wrap break-word
+
+//**********颜色**********
+color(types = mC) //color
+	if types is tran //transparent
+		color transparent
+	if types is mC //masterColor
+		color masterColor
+	else if types is sC //slaveColor
+		color slaveColor
+	else if types is a 'unit' //灰阶
+		color #111 * types
+	else
+		color types
+
+white() //白色 #FFF
+	color(white)
+
+red() //红色 #F00
+	color(red)
+
+green()  //绿色 #0F0
+	color(green)
+
+blue()  //蓝色 #00F
+	color(blue)
+
+yellow()  //黄色 #FF0
+	color(yellow)
+
+black() //黑色 #000
+	color(black)
+
+mC() //masterColor
+	color(mC)
+
+sC() //slaveColor
+	color(sC)
+
+hex333() //#333
+	color(3)
+
+hex666() //#666
+	color(6)
+
+hex999() //#999
+	color(9)
+
+hexAAA() //#AAA
+	color(10)
+
+hexBBB() //#BBB
+	color(11)
+
+hexCCC() //#CCC
+	color(12)
+
+hexDDD() //#DDD
+	color(13)
+
+hexEEE() //#EEE
+	color(14)
+
+noColor() //无颜色：透明
+	color(tran)
+
+//**********其他**********
+float(n = none) //设置Float，默认为无
+	if n is none
+		float none
+	if n is l
+		float left
+	if n is r
+		float right
+
+opacity(n) //透明度
+	opacity n
+	filter unquote('progid:DXImageTransform.Microsoft.Alpha(Opacity=' + round(n * 100) + ')')
+
+shadow(n = 1px 2px 15px #BBB, ie = 0) //阴影
+	if n is 0
+		-webkit-box-shadow 0 0 0 0 transparent
+		-moz-box-shadow 0 0 0 0 transparent
+		box-shadow 0 0 0 0 transparent
+		if ie is 0
+			html.lt-ie8 &
+				border(0)
+		else if ie is 1
+			html.lt-ie8 &
+				border(1px)
+	else
+		-webkit-box-shadow n
+		-moz-box-shadow n
+		box-shadow n
+		if ie is 0
+			html.lt-ie8 &
+				border(0)
+		else if ie is 1
+			html.lt-ie8 &
+				border(1px)
+
+insetShadow()
+	shadow(inset 0 10px 10px #CCC)
+
+cursor()
+	cursor arguments
+
+pointer()
+	cursor(pointer)
+
+move()
+	cursor(move)
+
+clearfix() //闭合浮动
+	&:before
+	&:after
+		content ""
+		display table
+	&:after
+		clear both
+	html.lt-ie8 &
+		zoom 1
+
+//**********function**********
+alignLeft(n = f)
+	if n is f //左浮动
+		float(l)
+	if n is t //文本左对齐
+		textAlign(l)
+
+alignRight(n = f)
+	if n is f //右浮动
+		float(r)
+	if n is t //文本右对齐
+		textAlign(r)
+
+alignCenter(n = t)
+	if n is m //块元素水平居中
+		margin-left auto
+		margin-right auto
+	if n is t //文本中对其
+		textAlign(c)
+
+changeColor(linkColor = masterColor, hoverColor = slaveColor) //A连接颜色切换
+	&:link
+	&:visited
+		color linkColor
+	&:hover
+	&:active
+		color hoverColor

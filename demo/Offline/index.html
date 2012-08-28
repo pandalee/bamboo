@@ -1,9 +1,9 @@
 <!doctype html>
-<!--[if lt IE 7]><html class="no-js ie lt-ie9 lt-ie8 lt-ie7" lang="zh-CN"><![endif]-->
-<!--[if lt IE 8]><html class="no-js ie lt-ie9 lt-ie8" lang="zh-CN"><![endif]-->
-<!--[if lt IE 9]><html class="no-js ie lt-ie9" lang="zh-CN"><![endif]-->
-<!--[if IE 9]><html class="no-js ie" lang="zh-CN"><![endif]-->
-<!--[if gt IE 9]><!--><html class="no-js" lang="zh-CN"><!--<![endif]-->
+<!--[if lt IE 7]><html class="no-js ie lt-ie9 lt-ie8 lt-ie7" lang="zh-CN" manifest='cache.manifest'><![endif]-->
+<!--[if lt IE 8]><html class="no-js ie lt-ie9 lt-ie8" lang="zh-CN" manifest='cache.manifest'><![endif]-->
+<!--[if lt IE 9]><html class="no-js ie lt-ie9" lang="zh-CN" manifest='cache.manifest'><![endif]-->
+<!--[if IE 9]><html class="no-js ie" lang="zh-CN" manifest='cache.manifest'><![endif]-->
+<!--[if gt IE 9]><!--><html class="no-js" lang="zh-CN" manifest='cache.manifest'><!--<![endif]-->
 <head>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=yes">
@@ -43,10 +43,67 @@
 			<article>
 				<h1>Offline Demo</h1>
 			</article>
+			<article>
+				<p>添加测试</p>
+				<button style="width: padding:: 20px 50px;">点击更新</button>
+				<p></p>
+				<iframe src="" frameborder="0"></iframe>
+			</article>
 		</div>
 	</div>
 	<!-- 页脚 Start -->
 	<footer>版权所有，保留一切权利！&nbsp;&nbsp;&nbsp;&copy;&nbsp;2012&nbsp;&nbsp;<a href="/" title="熊某某">熊某某</a>&nbsp;&nbsp;By&nbsp;&nbsp;<a href="mailto:landseerys@gmail.com" title="联系我">Panda.Lee</a></footer>
 	<!-- 页脚 End -->
+	<script type="text/javascript">
+		if (window.navigator.onLine) {
+			console.log('在线');
+		} else {
+			console.log('在线');
+		}
+
+		if (window.applicationCache) {
+			$('article:last-child').append('<p>支持离线模式！</p>');
+
+			var cache = window.applicationCache;
+
+			$('article:last-child button').click(function() {
+				cache.update();
+			});
+
+			cache.onchecking = function() {
+				console.log('文件存在。status:' + cache.status);
+			}
+
+			cache.ondownloading = function() {
+				console.log('正在下载。status:' + cache.status);
+			}
+
+			cache.oncached = function() {
+				console.log('下载完成。status:' + cache.status);
+				$('article:last-child').append('<p>缓存完毕!可以使用离线模式</p>');
+			}
+
+			cache.onnoupdate = function() {
+				console.log('没有更新。status:' + cache.status);
+				$('article:last-child').append('<p>不需要更新!可以使用离线模式</p>');
+			}
+
+			cache.onupdateready = function() {
+				console.log('更新完毕。status:' + cache.status);
+				$('article:last-child').append('<p>更新完毕!</p>');
+			}
+
+			cache.onobsolete = function() {
+				console.log('要缓存的文件不存在。status:' + cache.status);
+			}
+
+			cache.onerror = function() {
+				console.log('出错了。status:' + cache.status);
+				console.log(window.applicationCache.error);
+			}
+		} else {
+			$('article:last-child').append('<p>不支持离线模式！</p>');
+		}
+	</script>
 </body>
 </html>

@@ -1,0 +1,14 @@
+CACHE MANIFEST
+
+#version 1.01
+CACHE:
+	images/n.gif
+	images/tran.jpg
+	images/loading.gif
+	script/jquery-1.8.0.js
+	script/jquery-ui.js
+	script/interactive.js
+	style/index.css
+	index.html
+NETWORK:
+    *

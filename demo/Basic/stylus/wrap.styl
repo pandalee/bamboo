@@ -1,110 +1,69 @@
-html
-body
-	minWidth(docWidth)
+// 变量
+offset = 10px
+outerBottom = 10px
+
+html,body
+	width(100%)
 	height(100%)
 
-	html.lt-ie7 &
-		width(auto)
-
 header
-
-	.mainBody
-		pad(0 10px)
-		width(coreWidth)
-
-.container
-	//背景画板
-	bColor(#DE)
-	margin(-1px auto 0)
-	pad(15px 0 5px)
-	insetShadow()
-
-	.mainBody
-		relative()
-		alignCenter(m)
-		pad(10px,r)
-		@extend .row24
+	// 页眉
 
 .content
-	bColor(#F)
-	@extend .offset
-	margin(10px,b)
-	shadow(0)
+	margin(outerBottom,b)
 
 nav
-	//导航
+	// 导航
 
 menu
-	//导航
+	// 导航
 
 article
 	//单栏正文
 	@extend .content
 
 section
-	section
-		//多栏布局：分栏内容框架
-		@extend .content
-
-		//等双栏布局
-		&.doubleColumn
-			bColor(tran)
-			alignLeft()
-			margin(0)
-			@extend .row12
-			shadow(0)
-			overflow hidden
-
-			.box
-				@extend .content
-
-section
 	clearfix()
 
-	aside
-		//多栏布局：侧栏
+	section
 		alignLeft()
-		inlineBlock()
-		@extend .row5
-		overflow hidden
+		margin(outerBottom,b)
+
+	&.doubleColumn
+		// 等双栏布局
+		
+		section
+			width(50%)
+
+	&.threeColumn
+		// 等三双栏布局
+
+		section
+			width(33.33%)
+
+	&.fourColumn
+		// 等四双栏布局
+
+		section
+			width(25%)
+
+	aside
+		//双栏布局：侧栏
+		alignLeft()
+		margin(outerBottom,b)
+		width(25%)
 
 	article
 		//二栏布局：正文
-		bColor(tran)
-		margin(0)
-		@extend section aside
-		@extend .row19
-		shadow(0)
-
-	.main
-		//三栏布局：正文
-		@extend section aside
-		@extend .row13
-
-	.sidebar
-		//三栏布局：侧栏
 		alignLeft()
-		inlineBlock()
-		@extend .row6
+		margin(outerBottom,b)
+		width(75%)
 
-	&.type1
-
+	&.right
+	
 		aside
-			@extend .row6
-
 		article
-			@extend	.row18
-
-	&.type2
-		//内双栏布局
-		@extend .content
-
-		section
-			shadow(0)
-			margin(0,b)
-
-		aside
-			margin(-10px,l)
+			alignRight()
 
 footer
-	width(coreWidth)
+	// 页脚

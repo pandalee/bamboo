@@ -23,7 +23,8 @@ blockquote,
 th,
 td,
 menu,
-dialog {
+dialog,
+figure {
   margin: 0;
   padding: 0;
 }
@@ -104,12 +105,10 @@ a {
 html.lt-ie7 a:link,
 html.lt-ie7 a:visited {
   opacity: 1;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=100);
 }
 html.lt-ie7 a:hover,
 html.lt-ie7 a:active {
   opacity: 0.99;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=99);
 }
 img {
   display: inline-block;
@@ -128,127 +127,19 @@ hr {
 }
 ::-moz-selection {
   background-color: #000;
-  color: #0bb;
+  color: #09c;
 }
 ::selection {
   background-color: #000;
-  color: #0bb;
-}
-.offset,
-.content,
-article,
-section section,
-section section.doubleColumn .box,
-section.type2,
-header .mainBody {
-  margin-left: 10px;
-}
-.row1 {
-  width: 50px;
-}
-.row2 {
-  width: 100px;
-}
-.row3 {
-  width: 150px;
-}
-.row4 {
-  width: 200px;
-}
-.row5,
-section aside,
-section article,
-section .main {
-  width: 250px;
-}
-.row6,
-section .sidebar,
-section.type1 aside {
-  width: 300px;
-}
-.row7 {
-  width: 350px;
-}
-.row8 {
-  width: 400px;
-}
-.row9 {
-  width: 450px;
-}
-.row10 {
-  width: 500px;
-}
-.row11 {
-  width: 550px;
-}
-.row12,
-section section.doubleColumn {
-  width: 600px;
-}
-.row13,
-section .main {
-  width: 650px;
-}
-.row14 {
-  width: 700px;
-}
-.row15 {
-  width: 750px;
-}
-.row16 {
-  width: 800px;
-}
-.row17 {
-  width: 850px;
-}
-.row18,
-section.type1 article {
-  width: 900px;
-}
-.row19,
-section article {
-  width: 950px;
-}
-.row20 {
-  width: 1000px;
-}
-.row21 {
-  width: 1050px;
-}
-.row22 {
-  width: 1100px;
-}
-.row23 {
-  width: 1150px;
-}
-.row24,
-.container .mainBody {
-  width: 1200px;
+  color: #09c;
 }
 body {
   font-size: 14px;
   line-height: 1.231;
   font-family: \5FAE\8F6F\96C5\9ED1,Verdana,\5B8B\4F53,sans-serif;
 }
-a.msC:link,
-a.msC:visited {
-  color: #0bb;
-}
-a.msC:hover,
-a.msC:active {
-  color: #963;
-}
-a.hU:link,
-footer a:link,
-a.hU:visited,
-footer a:visited {
-  text-decoration: none;
-}
-a.hU:hover,
-footer a:hover,
-a.hU:active,
-footer a:active {
-  text-decoration: underline;
+button {
+  overflow: visible;
 }
 a.u:link,
 a.u:visited,
@@ -261,13 +152,12 @@ a.tag:visited,
 a.tag:hover,
 a.tag:active {
   position: absolute;
-  top: auto;
-  left: auto;
+  top: 0;
+  left: 0;
   display: block;
   background-color: white;
   border: 0 none;
   opacity: 0;
-  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
 }
 .hideTitle {
   font-size: 0;
@@ -280,73 +170,15 @@ a.tag:active {
 html body .hidden {
   display: none;
 }
-body {
-  background-color: #ededed;
-}
 html,
 body {
-  width: auto;
-  min-width: 1210px;
+  width: 100%;
   height: 100%;
-}
-html.lt-ie7 html,
-html.lt-ie7 body {
-  width: 1210px;
-}
-html.lt-ie7 html,
-html.lt-ie7 body {
-  width: auto;
-}
-header .mainBody {
-  padding: 0 10px;
-  width: 1190px;
-}
-.container {
-  background-color: #dedede;
-  margin: -1px auto 0;
-  padding: 15px 0 5px;
-  -webkit-box-shadow: inset 0 10px 10px #ccc;
-  -moz-box-shadow: inset 0 10px 10px #ccc;
-  box-shadow: inset 0 10px 10px #ccc;
-}
-html.lt-ie8 .container {
-  border: 0 none;
-}
-.container .mainBody {
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-  padding-right: 10px;
 }
 .content,
 article,
-section section,
-section section.doubleColumn .box,
-section.type2 {
-  background-color: #fff;
+header {
   margin-bottom: 10px;
-  -webkit-box-shadow: 0 0 0 0 transparent;
-  -moz-box-shadow: 0 0 0 0 transparent;
-  box-shadow: 0 0 0 0 transparent;
-}
-html.lt-ie8 .content,
-html.lt-ie8 article,
-html.lt-ie8 section section,
-html.lt-ie8 section section.doubleColumn .box,
-html.lt-ie8 section.type2 {
-  border: 0 none;
-}
-section section.doubleColumn {
-  background-color: transparent;
-  float: left;
-  margin: 0;
-  -webkit-box-shadow: 0 0 0 0 transparent;
-  -moz-box-shadow: 0 0 0 0 transparent;
-  box-shadow: 0 0 0 0 transparent;
-  overflow: hidden;
-}
-html.lt-ie8 section section.doubleColumn {
-  border: 0 none;
 }
 section:before,
 section:after {
@@ -356,94 +188,33 @@ section:after {
 section:after {
   clear: both;
 }
-html.lt-ie8 section {
-  zoom: 1;
-}
-section aside,
-section article,
-section .main {
+section section {
   float: left;
-  display: inline-block;
-  overflow: hidden;
+  margin-bottom: 10px;
+}
+section.doubleColumn section {
+  width: 50%;
+}
+section.threeColumn section {
+  width: 33.33%;
+}
+section.fourColumn section {
+  width: 25%;
+}
+section aside {
+  float: left;
+  margin-bottom: 10px;
+  width: 25%;
 }
 section article {
-  background-color: transparent;
-  margin: 0;
-  -webkit-box-shadow: 0 0 0 0 transparent;
-  -moz-box-shadow: 0 0 0 0 transparent;
-  box-shadow: 0 0 0 0 transparent;
-}
-html.lt-ie8 section article {
-  border: 0 none;
-}
-section .sidebar {
   float: left;
-  display: inline-block;
+  margin-bottom: 10px;
+  width: 75%;
 }
-section.type2 section {
-  -webkit-box-shadow: 0 0 0 0 transparent;
-  -moz-box-shadow: 0 0 0 0 transparent;
-  box-shadow: 0 0 0 0 transparent;
-  margin-bottom: 0;
-}
-html.lt-ie8 section.type2 section {
-  border: 0 none;
-}
-section.type2 aside {
-  margin-left: -10px;
+section.right aside,
+section.right article {
+  float: right;
 }
 footer {
-  width: 1190px;
-}
-header {
-  background-color: #999;
-  margin-left: auto;
-  margin-right: auto;
-  padding: 20px 0 10px;
-}
-header .mainBody {
-  position: relative;
-  margin-left: auto;
-  margin-right: auto;
-}
-header .mainBody:before,
-header .mainBody:after {
-  content: "";
-  display: table;
-}
-header .mainBody:after {
-  clear: both;
-}
-html.lt-ie8 header .mainBody {
-  zoom: 1;
-}
-header .mainBody .title {
-  float: left;
-  font-size: 30px;
-  font-weight: 400;
-}
-header .mainBody .title a:link,
-header .mainBody .title a:visited {
-  color: #ccc;
-}
-header .mainBody .title a:hover,
-header .mainBody .title a:active {
-  color: #ddd;
-}
-footer {
-  margin-left: auto;
-  margin-right: auto;
-  padding: 20px 0;
-  color: #999;
-  text-align: center;
-}
-footer a {
-  color: #666;
-}
-h1 {
-  padding: 30px 0;
-  font-size: 30px;
-  font-weight: 400;
-  color: #0bb;
-  text-align: center;
+  background-color: #ccc;
 }

@@ -1,10 +1,5 @@
-//**********颜色**********
-masterColor = #0BB
-slaveColor = #963
-defaultBorderColor = #CE
-
 //**********定位**********
-pz(types = s, x = auto, y =auto)
+pz(types = s, x = 0, y =0)
 	if types is ab
 		position absolute
 		top y
@@ -16,7 +11,7 @@ pz(types = s, x = auto, y =auto)
 	if types is f
 		position fixed
 
-absolute(x = auto, y = auto)
+absolute(x = 0,y = 0)
 	pz('ab',x,y)
 
 relative()
@@ -78,7 +73,7 @@ pad(n, side = all)
 	if side is l
 		padding-left n
 
-border(n, types = solid, color = defaultBorderColor, side = all) //边框
+border(n, types = solid, color = #ce, side = all) //边框
 	if n is 0  //无边框
 		if side is all
 			border 0 none
@@ -113,25 +108,21 @@ width()
 height()
 	height arguments
 
-minWidth() //最小宽
+minWidth(n) //最小宽
 	width auto
-	min-width arguments
-	html.lt-ie7 &
-		width arguments
+	min-width n
 
-minHeight() //最小高
+minHeight(n) //最小高
 	height auto
-	min-height arguments
-	html.lt-ie7 &
-		height arguments
+	min-height n
 
-maxWidth() //最大宽
+maxWidth(n) //最大宽
 	width auto
-	max-width arguments
+	max-width n
 
-maxHeight() //最大高
+maxHeight(n) //最大高
 	height auto
-	max-height arguments
+	max-height n
 
 bColor(types = mC)
 	//background-color
@@ -140,10 +131,10 @@ bColor(types = mC)
 		background-color transparent
 	else if types is mC
 		//masterColor
-		background-color masterColor
+		background-color #09C
 	else if types is sC
 		//slaveColor
-		background-color slaveColor
+		background-color #9C3
 	else if types is a 'unit'
 		//灰阶
 		background-color #111 * types
@@ -162,17 +153,16 @@ bImg(imgURL, repeatType = no, x = 0, y = 0, color = transparent) //background-im
 	else if repeatType is y
 		background url(../images/imgURL) repeat-y x y color
 
-gradient(color1, color2)
-	// 颜色格式要用完整的十六进制表示
-	background -moz-linear-gradient(top, color1, color2)
-	background -webkit-gradient(linear, left top, left bottom, from(color1), to(color2))
-	background -o-linear-gradient(top, color1, color2)
-	filter unquote('progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=' + color1 + ', endColorstr=' + color2 + ')')
-
-partGradient(color1, color2, color3, percent1 = 0, percent2 = 100%, percent3 = 100%)
-	background -moz-linear-gradient(top, color1 percent1, color2 percent2, color3 percent3)
-	background -webkit-gradient(linear, left top, left bottom, color-stop(percent1, color1), color-stop(percent2, color2), color-stop(percent3, color3))
-	background -o-linear-gradient(top, color1 percent1, color2 percent2)
+// 线性渐变模版，最多支持5种颜色，前两种颜色参数必选。默认第一个颜色位置在0%，其他默认在100%。从第三个颜色开始默认为透明色。渐变起点默认为TOP
+gradient(color1, color2, percent1 = 0, percent2 = 100%, color3 = transparent, percent3 = 100%, type = top, color4 = transparent, percent4 = 100%, color5 = transparent, percent5 = 100%)
+	// Safari 5.1, Chrome 10+
+	background -moz-linear-gradient(type, color1 percent1, color2 percent2, color3 percent3, color4 percent4, color5 percent5)
+	// Firefox 3.6+
+	background -webkit-linear-gradient(type, color1 percent1, color2 percent2, color3 percent3, color4 percent4, color5 percent5)
+	// IE 10
+	background -ms-linear-gradient(type, color1 percent1, color2 percent2, color3 percent3, color4 percent4, color5 percent5)
+	// Opera 11.10+
+	background -o-linear-gradient(type, color1 percent1, color2 percent2, color3 percent3, color4 percent4, color5 percent5)
 
 //**********文本**********
 ff(types = yh) //font-family
@@ -243,9 +233,9 @@ color(types = mC) //color
 	if types is tran //transparent
 		color transparent
 	if types is mC //masterColor
-		color masterColor
+		color #09C
 	else if types is sC //slaveColor
-		color slaveColor
+		color #9C3
 	else if types is a 'unit' //灰阶
 		color #111 * types
 	else
@@ -313,32 +303,17 @@ float(n = none) //设置Float，默认为无
 
 opacity(n) //透明度
 	opacity n
-	filter unquote('progid:DXImageTransform.Microsoft.Alpha(Opacity=' + round(n * 100) + ')')
 
-shadow(n = 1px 2px 15px #BBB, ie = 0) //阴影
+shadow(n = 1px 2px 15px #BBB, type = ) //阴影
 	if n is 0
 		-webkit-box-shadow 0 0 0 0 transparent
 		-moz-box-shadow 0 0 0 0 transparent
 		box-shadow 0 0 0 0 transparent
-		if ie is 0
-			html.lt-ie8 &
-				border(0)
-		else if ie is 1
-			html.lt-ie8 &
-				border(1px)
-	else
-		-webkit-box-shadow n
-		-moz-box-shadow n
-		box-shadow n
-		if ie is 0
-			html.lt-ie8 &
-				border(0)
-		else if ie is 1
-			html.lt-ie8 &
-				border(1px)
 
-insetShadow()
-	shadow(inset 0 10px 10px #CCC)
+	else
+		-webkit-box-shadow type n
+		-moz-box-shadow type n
+		box-shadow type n
 
 cursor()
 	cursor arguments
@@ -356,8 +331,6 @@ clearfix() //闭合浮动
 		display table
 	&:after
 		clear both
-	html.lt-ie8 &
-		zoom 1
 
 //**********function**********
 alignLeft(n = f)
@@ -379,10 +352,3 @@ alignCenter(n = t)
 	if n is t //文本中对其
 		textAlign(c)
 
-changeColor(linkColor = masterColor, hoverColor = slaveColor) //A连接颜色切换
-	&:link
-	&:visited
-		color linkColor
-	&:hover
-	&:active
-		color hoverColor

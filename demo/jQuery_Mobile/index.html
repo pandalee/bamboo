@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+	<meta name="author" content="Uesr Centered Develop and Design: Panda.Lee landseerys@gmail.com" />
+	<meta name="Robots" contect="all">
+	<title>移动版</title>
+	<link rel="stylesheet" href="style/jquery.mobile-1.1.1.css" media="screen">
+	<style type="text/css">
+		div[id] {
+			min-height: 480px;
+		}
+		a {
+			font-size: 20px;
+			line-height: 30px;
+		}
+	</style>
+	<script src="script/jquery-1.8.0.js"></script>
+	<script src="script/jquery.mobile-1.1.1.js"></script>
+	<script>
+		console.log(window.location.hash);
+	</script>
+</head>
+<body>
+	<div id="page1" data-role="page">
+		<div data-role="header">
+			<h1>移动版第一个测试</h1>
+		</div>
+		<div data-role="content">
+			<a href="#page2" data-transition="fade">切到下一页(渐隐)</a><br />
+			<a href="#page2" data-transition="pop">切到下一页(弹出)</a><br />
+			<a href="#page2" data-transition="flip">切到下一页(向后翻)</a><br />
+			<a href="#page2" data-transition="turn">切到下一页(向前翻)</a><br />
+			<a href="#page2" data-transition="flow">切到下一页(缩小左横移)</a><br />
+			<a href="#page2" data-transition="slidefade">切到下一页(左横移)</a><br />
+			<a href="#page2" data-transition="slide">切到下一页(左横移连续版)</a><br />
+			<a href="#page2" data-transition="slideup">切到下一页(渐隐从下方出现)</a><br />
+			<a href="#page2" data-transition="slidedown">切到下一页(渐隐从上方出现)</a><br />
+			<a href="#page2" data-transition="none">切到下一页(无效果)</a>
+			<p>不知道写点儿啥</p>
+		</div>
+		<div data-role="footer">
+			<p>测试底</p>
+		</div>
+	</div>
+	<div id="page2" data-role="page">
+		<div data-role="header">
+			<h1>移动版第二个测试</h1>
+		</div>
+		<div data-role="content">
+			<a href="#page1">返回上一页</a><br />
+			<a href="#dialog" data-rel="dialog" data-transition="pop">Open dialog</a> 
+			<p>还是不知道写点儿啥</p>
+		</div>
+		<div data-role="footer">
+			<p>测试底</p>
+		</div>
+	</div>
+	<div id="dialog" data-rel="dialog">
+		<p>这是一个Dialog</p>
+		<a href="javascript:void(0);" data-rel="back" data-role="button">返回</a>
+	</div>
+</body>
+</html>
